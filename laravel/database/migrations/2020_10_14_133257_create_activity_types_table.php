@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFootprintsTable extends Migration
+class CreateActivityTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateFootprintsTable extends Migration
      */
     public function up()
     {
-        Schema::create('footprints', function (Blueprint $table) {
-			$table->id();
-            $table->integer('activity');
-			$table->string('activityType');
-			$table->string('country');
-			$table->string('mode');
-			$table->integer('carbonFootprint');
+        Schema::create('activity_types', function (Blueprint $table) {
+            $table->id();
+			$table->string('types');
             $table->timestamps();
         });
+		DB::table('activity_types')->insert([
+            ['types' => 'miles '],
+            ['types' => 'fuel']
+        ]);
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateFootprintsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('footprints');
+        Schema::dropIfExists('activity_types');
     }
 }

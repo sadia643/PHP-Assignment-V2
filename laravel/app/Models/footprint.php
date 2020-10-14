@@ -11,5 +11,5 @@ class footprint extends Model
 	
 	protected $table = 'footprints';
 
-    protected $fillable = ['activity', 'activityType', 'country', 'mode'];
+    protected $fillable = ['activity', 'activityType', 'country', 'mode', 'carbonFootprint'];
 }
