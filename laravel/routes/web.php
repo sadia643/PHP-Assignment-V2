@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/footprint', 'App\Http\Controllers\ApiController@index');
+Route::get('/footprint/show', 'App\Http\Controllers\ApiController@show');
