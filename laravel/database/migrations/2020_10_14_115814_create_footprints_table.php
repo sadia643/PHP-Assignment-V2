@@ -17,9 +17,11 @@ class CreateFootprintsTable extends Migration
 			$table->id();
             $table->integer('activity');
 			$table->string('activityType');
+			$table->string('fuelType')->nullable();
+			$table->string('mode')->nullable();
 			$table->string('country');
-			$table->string('mode');
-			$table->integer('carbonFootprint');
+			$table->string('appTkn')->nullable();		
+			$table->json('carbonFootprint')->nullable();
             $table->timestamps();
         });
     }
