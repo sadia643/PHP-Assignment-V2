@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use \Cache;
 use Carbon\Carbon;
+use App\Models\footprint;
 
 
 class ApiController extends Controller
@@ -60,8 +61,17 @@ class ApiController extends Controller
 			$response = $client->request('GET', $api_url.$params);
 			$statusCode = $response->getStatusCode();
 			$body = $response->getBody()->getContents();
-			$minutes = Carbon::now()->add(1, 'day');
-			Cache::put('carbonFootprint', $body, $minutes); //30 minutes
+			$minutes = Carbon::now()->add(1, 'day'); // 1 day
+			Cache::put('carbonFootprint', $body, $minutes); 
+			$footprint_object = new footprint();
+			$footprint_object->activity = $request['activity'];
+			$footprint_object->activityType = $request['activityType'];
+			$footprint_object->fuelType = $request['fuelType'];
+			$footprint_object->mode = $request['mode'];
+			$footprint_object->country = $country_code;
+			$footprint_object->appTkn = $request['appTkn'];
+			$footprint_object->carbonFootprint = $body;
+			$footprint_object->save();
 			return $body;
 	}
 }
