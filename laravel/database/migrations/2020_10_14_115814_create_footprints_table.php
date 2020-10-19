@@ -14,13 +14,7 @@ class CreateFootprintsTable extends Migration
     public function up()
     {
         Schema::create('footprints', function (Blueprint $table) {
-			$table->id();
-            $table->integer('activity');
-			$table->string('activityType');
-			$table->string('fuelType')->nullable();
-			$table->string('mode')->nullable();
-			$table->string('country');
-			$table->string('appTkn')->nullable();		
+			$table->id();		
 			$table->json('carbonFootprint')->nullable();
             $table->timestamps();
         });

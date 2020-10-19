@@ -15,14 +15,14 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('ISO_3166-1');
+            $table->string('country_code');
 			$table->string('country_name');
             $table->timestamps();
         });
 		DB::table('countries')->insert([
-			['ISO_3166-1' => 'usa', 'country_name' => 'United States'],
-			['ISO_3166-1' => 'gbr', 'country_name' => 'United Kingdom'],
-			['ISO_3166-1' => 'def', 'country_name' => 'Other countries/default values']
+			['country_code' => 'usa', 'country_name' => 'United States'],
+			['country_code' => 'gbr', 'country_name' => 'United Kingdom'],
+			['country_code' => 'def', 'country_name' => 'Other countries/default values']
         ]);
 		
     }
